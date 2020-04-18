@@ -1,0 +1,78 @@
+﻿@model RepairIt.Models.ClientDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Client.Cl_FirstName @Model.Client.Cl_LastName</h2>
+<hr />
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Cl_FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Cl_FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Cl_LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Cl_LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Cl_Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Cl_Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Cl_Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Cl_Notes)
+        </dd>
+    </dl>
+</div>
+
+<hr />
+
+<h3>Client's Devices</h3>
+
+<table class="table">
+    <tr>
+        <th class="col-md-3">Name</th>
+        <th class="col-md-6">Notes</th>
+        <th class="col-md-3">Actions</th>
+    </tr>
+
+    @foreach (var item in Model.ClientDevices)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dev_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dev_Notes)
+            </td>
+            <td>
+                <a href="#" onclick="ShowAddEditClientModal(@item.Dev_Id)">Edit</a> |
+                @Html.ActionLink("Add Repair", "AddRepair", "Repairs", new { id = item.Dev_Id }, null) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Dev_Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

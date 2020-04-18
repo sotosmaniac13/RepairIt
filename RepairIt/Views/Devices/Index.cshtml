@@ -1,0 +1,39 @@
+﻿@model IEnumerable<RepairIt.Models.Device>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2> @ViewBag.ClientName's Devices</h2>
+
+<p>
+    @Html.ActionLink("Add Device", "Create", "Devices", null, new { ClientId = ViewBag.ClientId })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Dev_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dev_Notes)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dev_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dev_Notes)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Dev_Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Dev_Id })
+            </td>
+        </tr>
+    }
+
+</table>

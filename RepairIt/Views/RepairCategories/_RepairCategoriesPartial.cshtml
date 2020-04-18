@@ -1,0 +1,78 @@
+﻿@model IEnumerable<RepairIt.Models.RepairCategory>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th class="col-md-3">
+            @Html.DisplayNameFor(model => model.Cat_Name)
+        </th>
+        <th class="col-md-3">
+            Category Tasks
+        </th>
+        <th class="col-md-3">
+            Category Type
+        </th>
+        <th class="col-md-3">
+            Actions
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cat_Name)
+            </td>
+            <td></td>
+            <td></td>
+            <td>
+                <a href="#" onclick="ShowEditCategoryModal(@item.Cat_Id)">Edit</a> |
+                <a href="#" onclick="ShowAddEditTasksModal(@item.Cat_Id)">Add Task</a> |
+                <a href="#" onclick="ShowDeleteCategoryModal(@item.Cat_Id)">Delete</a>
+            </td>
+        </tr>
+        foreach (var task in item.Cat_DefTasks)
+        {
+            <tr>
+                <td></td>
+                <td>@Html.DisplayFor(modelItem => task.CatTask_Name)</td>
+                <td>@Html.DisplayFor(modelItem => task.CatTask_Type)</td>
+                <td>
+                    <a href="#" onclick="ShowDeleteTaskModal(@task.CatTask_Id)">Delete</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+@*Modal for adding/editing a repair category task*@
+<div class="modal fade" tabindex="-1" id="AddEditTasksModal" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"> × </button>
+                <h3 class="modal-title">Property</h3>
+            </div>
+            <div class="modal-body" id="AddEditTasksModalBodyDiv">
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+@*Displays the modal for adding/editing a repair category task*@
+<script>
+    var ShowAddEditTasksModal = function (catid) {
+        var url = "/RepairCategories/CreateAddEditTasksModal?id=" + catid;
+        $("#AddEditTasksModalBodyDiv").load(url, function () {
+            $("#AddEditTasksModal").modal("show");
+        })
+    }
+</script>

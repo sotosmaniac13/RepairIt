@@ -1,0 +1,79 @@
+﻿@model IEnumerable<RepairIt.Models.Repair>
+
+@{
+    ViewBag.Title = "Pending Repairs";
+}
+
+<h2>Pending Repairs</h2>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Rep_Device)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rep_Client)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rep_Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rep_Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rep_AdditionalFixes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rep_PendingFixes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rep_RepairCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rep_ReceivedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rep_CompletedOn)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rep_Device.Dev_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rep_Client.Cl_LastName) @Html.DisplayFor(modelItem => item.Rep_Client.Cl_FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rep_Subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rep_Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rep_AdditionalFixes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rep_PendingFixes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rep_RepairCost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rep_ReceivedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rep_CompletedOn)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Rep_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Rep_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Rep_Id })
+        </td>
+    </tr>
+}
+
+</table>

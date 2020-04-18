@@ -1,0 +1,34 @@
+﻿@model RepairIt.Models.Device
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Device</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dev_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dev_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dev_Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dev_Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Dev_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
